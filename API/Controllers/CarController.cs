@@ -41,7 +41,7 @@ namespace CarInformationTask.Controllers
         }
 
         [HttpPost]
-        [Route("Post")]
+        [Route("Create")]
         public async Task<ActionResult> Post([FromBody] CarDTO carDTO)
         {
             Car newcar = _mapper.Map<Car>(carDTO);
@@ -52,6 +52,7 @@ namespace CarInformationTask.Controllers
         }
 
         [HttpPut]
+        [Route("Update/{id}")]
         public async Task<ActionResult> Update(int id, [FromBody] CarDTO carDTO)
         {
             Car car = await _carContext.Cars.FirstOrDefaultAsync(c => c.CarId == id);
@@ -62,6 +63,7 @@ namespace CarInformationTask.Controllers
         }
 
         [HttpDelete]
+        [Route("Delete/{id}")]
         public async Task<ActionResult> Delete(int id)
         {
             var car = await _carContext.Cars.FindAsync(id);
