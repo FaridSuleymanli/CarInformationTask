@@ -13,6 +13,9 @@ namespace CarInformationTask.Mapper
         public AutoMapperProfile()
         {
             CreateMap<CarDTO, Car>().ReverseMap();
+
+            CreateMap<Car, CarForGetDTO>().ReverseMap();
+            CreateMap<CarType, CarTypeForGetDTO>().ReverseMap();
         }
     }
 }

@@ -29,14 +29,15 @@ namespace CarInformationTask.Controllers
         [Route("GetAll")]
         public async Task<ActionResult> GetAll()
         {
-            return Ok(await _carContext.CarTypes.Include(c => c.Cars).ToListAsync());
+            IEnumerable<CarForGetDTO> carDTOs = _mapper.Map<IEnumerable<CarForGetDTO>>(await _carContext.Cars.Include(c => c.CarType).ToListAsync());
+            return Ok(carDTOs);
         }
 
         [HttpGet]
         [Route("GetById/{id}")]
         public async Task<ActionResult> GetById(int id)
         {
-            return Ok(await _carContext.Cars.FirstOrDefaultAsync(c => c.CarId == id));
+            return Ok(_mapper.Map<Car, CarForGetDTO>(await _carContext.Cars.Include(c => c.CarType).FirstOrDefaultAsync(c => c.CarId == id)));
         }
 
         [HttpPost]

@@ -37,7 +37,7 @@ namespace CarInformationTask
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<CarContext>(options =>
             {
-                options.UseSqlServer(Configuration["ConnectionStrings:Default"]);
+                options.UseSqlServer("Server=LAPTOP-375LDOTD;Initial Catalog=CarInfo;Integrated Security=sspi;");
             });
             services.AddSwaggerGen(c =>
             {
