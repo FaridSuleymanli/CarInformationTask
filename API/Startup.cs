@@ -30,9 +30,10 @@ namespace CarInformationTask
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CarDTO>())
+            services.AddControllers()
                 .AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CarDTO>());
 
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<CarContext>(options =>
